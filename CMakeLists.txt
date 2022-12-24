@@ -1,18 +1,26 @@
- cmake_minimum_required(VERSION 3.20)
- project(earley)
- set(CMAKE_CXX_STANDARD 17)
- include_directories(libs)
- add_subdirectory(src)
- find_package(GTest REQUIRED)
- include_directories(${GTEST_INCLUDE_DIRS})
- enable_testing()
- add_executable(Test tests/tests.cpp)
- add_test(Test ${PROJECT_SOURCE_DIR}/bin/testing)
- add_executable(earley main.cpp)
- SET(CMAKE_INSTALL_RPATH "${PROJECT_SOURCE_DIR}/bin")
- target_link_libraries(earley Library)
- target_link_libraries(Test Library)
- target_link_libraries(Test Threads::Threads ${GTEST_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
- set(CMAKE_EXE_LINKER_FLAGS --coverage)
- add_definitions(-fprofile-arcs -ftest-coverage)
- target_link_libraries(Test -fprofile-arcs)
+cmake_minimum_required(VERSION 3.20)
+
+project(earley)
+set(CMAKE_CXX_STANDARD 17)
+
+include_directories(libs)
+add_subdirectory(src)
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+enable_testing()
+
+add_executable(Test tests/tests.cpp)
+add_test(Test ${PROJECT_SOURCE_DIR}/bin/testing)
+add_executable(earley main.cpp)
+
+SET(CMAKE_INSTALL_RPATH "${PROJECT_SOURCE_DIR}/bin")
+
+target_link_libraries(earley Library)
+target_link_libraries(Test Library)
+target_link_libraries(Test Threads::Threads ${GTEST_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+
+set(CMAKE_EXE_LINKER_FLAGS --coverage)
+
+add_definitions(-fprofile-arcs -ftest-coverage)
+target_link_libraries(Test -fprofile-arcs)
