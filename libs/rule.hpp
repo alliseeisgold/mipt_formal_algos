@@ -20,13 +20,3 @@ class Rule {
   char start_state_;
   std::string finish_state_;
 };
-
-/*
-std::istream& operator>>(std::istream& in, Rule& rule);
-std::ostream& operator<<(std::ostream& out, const Rule& rule);
-
-Rule(const Rule& rule) = default;
-Rule(Rule&& rule) = default;
-Rule& operator=(const Rule& rule) = default;
-Rule& operator=(Rule&& rule) = default;
- */
